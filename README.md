@@ -31,7 +31,8 @@ composer install
 2 - docker (pule se você já possuir uma instancia do mongodb para usar):
 
 ```
-docker
+docker pull mongo
+docker run -d -p 27017-27019:27017-27019 --name mongodb mongo:4.0.4
 ```
 
 3 - entre no diretório public/ e suba um servidor http:
