@@ -52,7 +52,7 @@ export default {
         create_popup_visible: false,
         orderByOptions: [
             {title: 'Nome', value: 'name'},
-            {title: 'Estado', value: 'estado.name'},
+            {title: 'Sigla', value: 'code'},
             {title: 'Criado', value: 'created_at'},
             {title: 'Atualizado', value: 'updated_at'},
         ],
