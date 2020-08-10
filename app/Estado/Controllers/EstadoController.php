@@ -16,6 +16,27 @@ class EstadoController extends BaseController {
      *     description="Retorna objetos estados",
      *     path="/api/estado",
      *     @OA\Response(response="200", description="Uma lista com estados"),
+     *      @OA\Parameter(
+     *          name="order_by",
+     *          in="query",
+     *          type="string",
+     *          description="Nome do campo a ser ordenado",
+     *          required=false,
+     *      ),
+     *      @OA\Parameter(
+     *          name="order_dir",
+     *          in="query",
+     *          type="string",
+     *          description="Direção da ordenação: ASC ou DESC",
+     *          required=false,
+     *      ),
+     *      @OA\Parameter(
+     *          name="search",
+     *          in="query",
+     *          type="string",
+     *          description="Valor a ser buscado",
+     *          required=false,
+     *      ),
      * ),
      * 
     */

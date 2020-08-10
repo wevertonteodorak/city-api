@@ -9,6 +9,25 @@ paths:
       summary: 'Retorna lista de cidades'
       description: 'Retorna objetos cidades'
       operationId: 'App\Cidade\Controllers\CidadeController::index'
+      parameters:
+        -
+          name: order_by
+          in: query
+          description: 'Nome do campo a ser ordenado'
+          required: false
+          type: string
+        -
+          name: order_dir
+          in: query
+          description: 'Direção da ordenação: ASC ou DESC'
+          required: false
+          type: string
+        -
+          name: search
+          in: query
+          description: 'Valor a ser buscado'
+          required: false
+          type: string
       responses:
         '200':
           description: 'Uma lista com cidades'
@@ -88,6 +107,25 @@ paths:
       summary: 'Retorna lista de estados'
       description: 'Retorna objetos estados'
       operationId: 'App\Estado\Controllers\EstadoController::index'
+      parameters:
+        -
+          name: order_by
+          in: query
+          description: 'Nome do campo a ser ordenado'
+          required: false
+          type: string
+        -
+          name: order_dir
+          in: query
+          description: 'Direção da ordenação: ASC ou DESC'
+          required: false
+          type: string
+        -
+          name: search
+          in: query
+          description: 'Valor a ser buscado'
+          required: false
+          type: string
       responses:
         '200':
           description: 'Uma lista com estados'
