@@ -12,10 +12,10 @@ Estas instruções fornecerão uma cópia do projeto instalado e funcionando em 
 O que você precisa para instalar o software e como instalá-los
 
 
--- php v7.2 ou superior
--- extensão do mongodb instalada e ativada para seu ambiente PHP - [MongoDB PHP drivers](https://docs.mongodb.com/drivers/php)
--- composer
--- docker para subir uma instância do mongodb. Se você já possuir um rodando em outro local basta configurar essa conexão em config/database.php
+* php v7.2 ou superior
+* extensão do mongodb instalada e ativada para seu ambiente PHP - [MongoDB PHP drivers](https://docs.mongodb.com/drivers/php)
+* composer
+* docker para subir uma instância do mongodb. Se você já possuir um rodando em outro local basta configurar essa conexão em config/database.php
 
 
 ### Instalação
