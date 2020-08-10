@@ -9,6 +9,16 @@ use App\src\Http\Validator;
 
 class EstadoController extends BaseController {
 
+    /**
+     * @OA\Get(
+     *     tags={"estado"},
+     *     summary="Retorna lista de estados",
+     *     description="Retorna objetos estados",
+     *     path="/api/estado",
+     *     @OA\Response(response="200", description="Uma lista com estados"),
+     * ),
+     * 
+    */
     public function index(Request $req, $response, $args){
         $q = $req->getQueryParams();
 
@@ -32,6 +42,48 @@ class EstadoController extends BaseController {
         return Response::json($estados);
     }
 
+    /**
+     * @OA\Get(
+     *     tags={"estado"},
+     *     summary="Retorna um estado específico",
+     *     description="Retorna um estado",
+     *     path="/api/estado/{id}",
+     *     @OA\Response(response="200", description="Um estado"),
+     * ),
+     * 
+    */
+    public function show(Request $req, $response, $args){
+        $estado = Estado::find($args['id']);
+        if ($estado) return Response::json($estado->toArray());
+
+        return Response::not_found();
+    }
+
+
+    /**
+     * @OA\Post(
+     *     tags={"estado"},
+     *     summary="Cria um novo objeto estado e o armazena",
+     *     description="Cria um objecto estado",
+     *     path="/api/estado",
+     *     @OA\Response(response="200", description="JSON com Mensagem sobre operação"),
+     * 
+     *      @OA\Parameter(
+     *          name="name",
+     *          in="body",
+     *          type="string",
+     *          description="Nome do estado",
+     *          required=true,
+     *      ),
+     *      @OA\Parameter(
+     *          name="code",
+     *          in="body",
+     *          type="string",
+     *          description="Código/Abreviação do estado",
+     *          required=true,
+     *      ),
+     * ),
+    */
     public function store($req, $response, $args){
 
         $estado = json_decode($req->getBody(), true);
@@ -46,6 +98,31 @@ class EstadoController extends BaseController {
         ]);
     }
 
+    /**
+     * @OA\Put(
+     *     tags={"estado"},
+     *     summary="Atualiza um objeto estado e o armazena",
+     *     description="Atualiza um objecto estado",
+     *     path="/api/estado/{id}",
+     *     @OA\Response(response="200", description="JSON com Mensagem sobre operação"),
+     *      @OA\Parameter(
+     *          name="name",
+     *          in="body",
+     *          type="string",
+     *          description="Nome do estado",
+     *          required=false,
+     *      ),
+     *      @OA\Parameter(
+     *          name="code",
+     *          in="body",
+     *          type="string",
+     *          description="Código/Abreviação do estado",
+     *          required=false,
+     *      ),
+     * 
+     * ),
+     * 
+    */
     public function update($req, $response, $args){
 
         $estado = json_decode($req->getBody(), true);
@@ -66,15 +143,32 @@ class EstadoController extends BaseController {
         return Response::not_found();
     }
 
+    /**
+     * @OA\Delete(
+     *     tags={"estado"},
+     *     summary="Deleta um objeto estado",
+     *     description="Deleta um objecto estado",
+     *     path="/api/estado/{id}",
+     *     @OA\Response(response="200", description="JSON com Mensagem sobre operação"),
+     * ),
+     * 
+    */
     public function delete($req, $response, $args){
         $estado = Estado::find($args["id"]);
-        $estado->cidades()->delete();
-        Estado::destroy($args["id"]);
         
-        if ($estado) return Response::json([
-            'message' => 'Registro excluido com sucesso'
-        ]);
+        if ($estado) {
+            if ($estado->cidades()->count()) {
+                $estado->cidades()->delete();
+            }
+            
+            Estado::destroy($args["id"]);
+            return Response::json([
+                'message' => 'Registro excluido com sucesso'
+            ]);
+        }
         
-        return Response::not_found();
+        return Response::json([
+            "message" => "Registro não encontrado"
+        ])->withStatus(404);
     }
 }

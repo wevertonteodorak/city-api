@@ -54,6 +54,10 @@ composer test
 ```
 
 
+## Documentação da API
+Após subir a aplicação acesse <IP_DA_APP>/docs
+
+
 ## Construido usando
 
 * [PHP](https://www.php.net/docs.php) - The PHP

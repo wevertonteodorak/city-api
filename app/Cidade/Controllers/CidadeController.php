@@ -9,6 +9,17 @@ use App\src\Http\BaseController;
 
 class CidadeController extends BaseController {
 
+    /**
+     * @OA\Info(title="Zoox API")
+     * @OA\Get(
+     *     tags={"cidade"},
+     *     summary="Retorna lista de cidades",
+     *     description="Retorna objetos cidades",
+     *     path="/api/cidade",
+     *     @OA\Response(response="200", description="Uma lista com cidades"),
+     * ),
+     * 
+    */
     public function index(Request $req, $response, $args){
         $q = $req->getQueryParams();
         $validate = $this->validate($q, [
@@ -30,6 +41,48 @@ class CidadeController extends BaseController {
         return Response::json($Cidades);
     }
 
+    /**
+     * @OA\Get(
+     *     tags={"cidade"},
+     *     summary="Retorna uma cidade específico",
+     *     description="Retorna uma cidade",
+     *     path="/api/cidade/{id}",
+     *     @OA\Response(response="200", description="Uma cidade"),
+     * ),
+     * 
+    */
+    public function show(Request $req, $response, $args){
+        $cidade = Cidade::find($args['id']);
+        if ($cidade) return Response::json($cidade->toArray());
+
+        return Response::not_found();
+    }
+
+
+    /**
+     * @OA\Post(
+     *     tags={"cidade"},
+     *     summary="Cria um novo objeto cidade e o armazena",
+     *     description="Cria um objecto cidade",
+     *     path="/api/cidade",
+     *     @OA\Response(response="200", description="JSON com Mensagem sobre operação"),
+     *      @OA\Parameter(
+     *          name="name",
+     *          in="body",
+     *          type="string",
+     *          description="Nome da cidade",
+     *          required=true,
+     *      ),
+     *      @OA\Parameter(
+     *          name="code",
+     *          in="body",
+     *          type="string",
+     *          description="Código/Abreviação da cidade",
+     *          required=true,
+     *      ),
+     * ),
+     * 
+    */
     public function store($req, $response, $args){
 
         $request = json_decode($req->getBody(), true);
@@ -47,6 +100,31 @@ class CidadeController extends BaseController {
         ]);
     }
 
+
+    /**
+     * @OA\Put(
+     *     tags={"cidade"},
+     *     summary="Atualiza um objeto cidade e o armazena",
+     *     description="Atualiza um objecto cidade",
+     *     path="/api/cidade/{id}",
+     *     @OA\Response(response="200", description="JSON com Mensagem sobre operação"),
+     *      @OA\Parameter(
+     *          name="name",
+     *          in="body",
+     *          type="string",
+     *          description="Nome da cidade",
+     *          required=true,
+     *      ),
+     *      @OA\Parameter(
+     *          name="code",
+     *          in="body",
+     *          type="string",
+     *          description="Código/Abreviação da cidade",
+     *          required=true,
+     *      ),
+     * ),
+     * 
+    */
     public function update($req, $response, $args){
 
         $data = json_decode($req->getBody(), true);
@@ -66,6 +144,16 @@ class CidadeController extends BaseController {
         ])->withStatus(404);
     }
 
+    /**
+     * @OA\Delete(
+     *     tags={"cidade"},
+     *     summary="Deleta um objeto cidade",
+     *     description="Deleta um objecto cidade",
+     *     path="/api/cidade/{id}",
+     *     @OA\Response(response="200", description="JSON com Mensagem sobre operação"),
+     * ),
+     * 
+    */
     public function delete($req, $response, $args){
 
         $Cidade = Cidade::destroy($args["id"]);

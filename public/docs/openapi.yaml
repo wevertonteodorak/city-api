@@ -1,0 +1,150 @@
+openapi: 3.0.0
+info:
+  title: 'Zoox API'
+paths:
+  /api/cidade:
+    get:
+      tags:
+        - cidade
+      summary: 'Retorna lista de cidades'
+      description: 'Retorna objetos cidades'
+      operationId: 'App\Cidade\Controllers\CidadeController::index'
+      responses:
+        '200':
+          description: 'Uma lista com cidades'
+    post:
+      tags:
+        - cidade
+      summary: 'Cria um novo objeto cidade e o armazena'
+      description: 'Cria um objecto cidade'
+      operationId: 'App\Cidade\Controllers\CidadeController::store'
+      parameters:
+        -
+          name: name
+          in: body
+          description: 'Nome da cidade'
+          required: true
+          type: string
+        -
+          name: code
+          in: body
+          description: 'Código/Abreviação da cidade'
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 'JSON com Mensagem sobre operação'
+  '/api/cidade/{id}':
+    get:
+      tags:
+        - cidade
+      summary: 'Retorna uma cidade específico'
+      description: 'Retorna uma cidade'
+      operationId: 'App\Cidade\Controllers\CidadeController::show'
+      responses:
+        '200':
+          description: 'Uma cidade'
+    put:
+      tags:
+        - cidade
+      summary: 'Atualiza um objeto cidade e o armazena'
+      description: 'Atualiza um objecto cidade'
+      operationId: 'App\Cidade\Controllers\CidadeController::update'
+      parameters:
+        -
+          name: name
+          in: body
+          description: 'Nome da cidade'
+          required: true
+          type: string
+        -
+          name: code
+          in: body
+          description: 'Código/Abreviação da cidade'
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 'JSON com Mensagem sobre operação'
+    delete:
+      tags:
+        - cidade
+      summary: 'Deleta um objeto cidade'
+      description: 'Deleta um objecto cidade'
+      operationId: 'App\Cidade\Controllers\CidadeController::delete'
+      responses:
+        '200':
+          description: 'JSON com Mensagem sobre operação'
+  /api/estado:
+    get:
+      tags:
+        - estado
+      summary: 'Retorna lista de estados'
+      description: 'Retorna objetos estados'
+      operationId: 'App\Estado\Controllers\EstadoController::index'
+      responses:
+        '200':
+          description: 'Uma lista com estados'
+    post:
+      tags:
+        - estado
+      summary: 'Cria um novo objeto estado e o armazena'
+      description: 'Cria um objecto estado'
+      operationId: 'App\Estado\Controllers\EstadoController::store'
+      parameters:
+        -
+          name: name
+          in: body
+          description: 'Nome do estado'
+          required: true
+          type: string
+        -
+          name: code
+          in: body
+          description: 'Código/Abreviação do estado'
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 'JSON com Mensagem sobre operação'
+  '/api/estado/{id}':
+    get:
+      tags:
+        - estado
+      summary: 'Retorna um estado específico'
+      description: 'Retorna um estado'
+      operationId: 'App\Estado\Controllers\EstadoController::show'
+      responses:
+        '200':
+          description: 'Um estado'
+    put:
+      tags:
+        - estado
+      summary: 'Atualiza um objeto estado e o armazena'
+      description: 'Atualiza um objecto estado'
+      operationId: 'App\Estado\Controllers\EstadoController::update'
+      parameters:
+        -
+          name: name
+          in: body
+          description: 'Nome do estado'
+          required: false
+          type: string
+        -
+          name: code
+          in: body
+          description: 'Código/Abreviação do estado'
+          required: false
+          type: string
+      responses:
+        '200':
+          description: 'JSON com Mensagem sobre operação'
+    delete:
+      tags:
+        - estado
+      summary: 'Deleta um objeto estado'
+      description: 'Deleta um objecto estado'
+      operationId: 'App\Estado\Controllers\EstadoController::delete'
+      responses:
+        '200':
+          description: 'JSON com Mensagem sobre operação'
