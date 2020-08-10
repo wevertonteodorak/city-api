@@ -80,6 +80,13 @@ class CidadeController extends BaseController {
      *          description="Código/Abreviação da cidade",
      *          required=true,
      *      ),
+     *      @OA\Parameter(
+     *          name="estado_id",
+     *          in="body",
+     *          type="string",
+     *          description="id do estado ao qual a cidade pertence",
+     *          required=true,
+     *      ),
      * ),
      * 
     */
@@ -113,14 +120,14 @@ class CidadeController extends BaseController {
      *          in="body",
      *          type="string",
      *          description="Nome da cidade",
-     *          required=true,
+     *          required=false,
      *      ),
      *      @OA\Parameter(
      *          name="code",
      *          in="body",
      *          type="string",
      *          description="Código/Abreviação da cidade",
-     *          required=true,
+     *          required=false,
      *      ),
      * ),
      * 

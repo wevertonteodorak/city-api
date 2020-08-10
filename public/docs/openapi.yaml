@@ -31,6 +31,12 @@ paths:
           description: 'Código/Abreviação da cidade'
           required: true
           type: string
+        -
+          name: estado_id
+          in: body
+          description: 'id do estado ao qual a cidade pertence'
+          required: true
+          type: string
       responses:
         '200':
           description: 'JSON com Mensagem sobre operação'
@@ -55,13 +61,13 @@ paths:
           name: name
           in: body
           description: 'Nome da cidade'
-          required: true
+          required: false
           type: string
         -
           name: code
           in: body
           description: 'Código/Abreviação da cidade'
-          required: true
+          required: false
           type: string
       responses:
         '200':
