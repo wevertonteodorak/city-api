@@ -50,8 +50,8 @@ class EstadoController extends BaseController {
 
         $estado = json_decode($req->getBody(), true);
         $validate = $this->validate($estado, [
-            'name' => 'required|string|min:3',
-            'code' => 'required|string|min:2|max:2',
+            'name' => 'nullable|string|min:3',
+            'code' => 'nullable|string|min:2|max:2',
         ]);
 
         $estado = Estado::find($args["id"]);
