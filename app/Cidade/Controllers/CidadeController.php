@@ -42,7 +42,9 @@ class CidadeController extends BaseController {
         $estado = Estado::find($validate['estado_id']);
         
         $Cidade = $estado->Cidades()->create($validate);
-        return Response::json($Cidade->toArray());
+        return Response::json([
+            'message' => 'Registro salvo com sucesso'
+        ]);
     }
 
     public function update($req, $response, $args){
@@ -54,8 +56,9 @@ class CidadeController extends BaseController {
         
         if ($Cidade) {
             $Cidade->fill($data)->save();
-            return Response::json(Cidade::find($args["id"])
-            ->toArray());
+            return Response::json([
+                'message' => 'Registro atualizado com sucesso'
+            ]);
         }
 
         return Response::json([
@@ -67,7 +70,9 @@ class CidadeController extends BaseController {
 
         $Cidade = Cidade::destroy($args["id"]);
         
-        if ($Cidade) return Response::string('Registro Excluido');
+        if ($Cidade) return Response::json([
+            'message' => 'Registro escluido com sucesso'
+        ]);
         
         return Response::json([
             "message" => "Registro não encontrado"

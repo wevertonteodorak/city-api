@@ -5,7 +5,6 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerInterface;
 use Slim\Psr7\Response;
 use Slim\Factory\AppFactory;
-use App\src\Exceptions\MyCustomErrorRenderer;
 use Slim\Views\Twig;
 use Slim\Views\TwigMiddleware;
 
@@ -19,7 +18,30 @@ $twig = Twig::create(__DIR__ . '/../resources/templates',
 
 $app->add(TwigMiddleware::create($app, $twig));
 
+$app->addRoutingMiddleware();
+$ErrorHandler = function (
+    ServerRequestInterface $request,
+    Throwable $exception,
+    bool $displayErrorDetails,
+    bool $logErrors,
+    bool $logErrorDetails,
+    ?LoggerInterface $logger = null
+) use ($app) {
+    $payload = ['message' => $exception->getMessage()];
+    $response = $app->getResponseFactory()->createResponse($exception->getCode() ?? 500);
+    $response->getBody()->write(
+        json_encode($payload, JSON_UNESCAPED_UNICODE)
+    );
+
+    return $response;
+};
+
+$errorMiddleware = $app->addErrorMiddleware(true, true, true);
+$errorHandler = $errorMiddleware->getDefaultErrorHandler();
+$errorMiddleware->setDefaultErrorHandler($ErrorHandler);
+$errorHandler->forceContentType('application/json');
+
 require __DIR__ . '/../app/routes.php';
 
-$app->run();    
+$app->run();  
 

@@ -43,8 +43,9 @@ export default {
         self.$http.delete(`/cidade/${self.cidade._id}`).then(response => {
             alert('Deletada com sucesso: ' + response.data.message)
             self.$emit('reload')
-        }).catch(error => {
-            alert('Algo deu errado: ' + error.data.message)
+        }, function(error) {
+                console.log(error)
+                alert('Algo deu errado: ' + error.response.data.message)
         })
       },
       edit(){
@@ -56,9 +57,10 @@ export default {
         self.$http.put(`/cidade/${data._id}`, data).then(response => {
             alert('Altarado com sucesso: ' + response.data.message)
             self.$emit('reload')
-        }).catch(error => {
-            alert('Algo deu errado: ' + error.data.message)
-        })
+        }, function(error) {
+                console.log(error)
+                alert('Algo deu errado: ' + error.response.data.message)
+            })
       },
     }
 }

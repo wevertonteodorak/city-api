@@ -19,10 +19,10 @@ class Validator {
     {
         $filesystem = new Filesystem();
         $loader = new Translation\FileLoader(
-            $filesystem, dirname(dirname(__FILE__)) . '/lang');
+            $filesystem, dirname(dirname(__FILE__)) . '../../lang');
             $loader->addNamespace(
                 'lang',
-                dirname(dirname(__FILE__)) . '/lang'
+                dirname(dirname(__FILE__)) . '../../lang'
             );
         $loader->load('en', 'validation', 'lang');
         return new Translation\Translator($loader, 'en');

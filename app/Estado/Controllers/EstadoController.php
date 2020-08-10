@@ -41,7 +41,9 @@ class EstadoController extends BaseController {
         ]);
 
         $estado = Estado::create($estado);
-        return Response::json($estado->toArray());
+        return Response::json([
+            'message' => 'Registro criado com sucesso'
+        ]);
     }
 
     public function update($req, $response, $args){
@@ -56,15 +58,18 @@ class EstadoController extends BaseController {
         
         if ($estado) {
             $estado->fill($validate)->update();
-            return Response::json($validate);
+            return Response::json([
+                'message' => 'Registro atualizado com sucesso'
+            ]);
         }
 
         return Response::not_found();
     }
 
     public function delete($req, $response, $args){
-
-        $estado = Estado::destroy($args["id"]);
+        $estado = Estado::find($args["id"]);
+        $estado->cidades()->delete();
+        Estado::destroy($args["id"]);
         
         if ($estado) return Response::json([
             'message' => 'Registro excluido com sucesso'

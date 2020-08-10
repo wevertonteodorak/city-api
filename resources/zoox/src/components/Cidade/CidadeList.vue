@@ -3,6 +3,7 @@
         <cidade-popup 
             :dialog="create_popup_visible"
             :cidade="cidade"
+            @reload="getCidades(uri)"
             @close="create_popup_visible=false"/>
         <v-container>
         <v-row no-gutters class="align-center">
@@ -32,7 +33,7 @@
         <v-container>
             <v-row dense v-for="cidade in cidades" :key="cidade.id">
                 <v-col>
-                    <CidadeCard :cidade="cidade" @reload="getCidades" />
+                    <CidadeCard :cidade="cidade" @reload="getCidades(uri)" />
                 </v-col>
             </v-row>
         </v-container>

@@ -9,12 +9,23 @@ class BaseController {
     
 
     public function validate($data, $rules){
-        $valdiator = (new Validator())->make(
+        $validator = (new Validator())->make(
             $data,
             $rules
         );
 
-        throw_if(!$valdiator->passes(), new Exception('Erros de preenchimento'));
+        if (!$validator->passes()) {
+            $message = $validator->errors()->getMessages();
+            $final_message = '';
+            foreach ($message as $key => $value) {
+                $final_message .= "$key: ".implode(',', $value)." ";
+            }
+            //exit();
+            $message = json_encode($final_message);
+            
+            throw new Exception($message, 422);
+           
+        }
 
         $result = [];
         foreach ($rules as $key => $value) {
