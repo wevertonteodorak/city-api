@@ -12,8 +12,8 @@
                 <v-col cols="1">{{cidade.code}}</v-col>
                 <v-col cols="2">{{cidade.name}}</v-col>
                 <v-col cols="2">{{cidade.estado.name}}</v-col>
-                <v-col cols="2">{{cidade.created_at}}</v-col>
-                <v-col cols="2">{{cidade.updated_at}}</v-col>
+                <v-col cols="2">{{cidade.created_at_GMT_3}}</v-col>
+                <v-col cols="2">{{cidade.updated_at_GMT_3}}</v-col>
                 <v-col cols="2" class="text-end">
                     <v-btn icon @click="edit"><v-icon>mdi-circle-edit-outline</v-icon></v-btn>
                     <v-btn icon @click="destroy"><v-icon>mdi-delete</v-icon></v-btn>

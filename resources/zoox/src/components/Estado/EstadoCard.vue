@@ -15,8 +15,8 @@
             <v-row no-gutters>
                 <v-col cols="1">{{estado.code}}</v-col>
                 <v-col cols="3">{{estado.name}}</v-col>
-                <v-col cols="2">{{estado.created_at}}</v-col>
-                <v-col cols="2">{{estado.updated_at}}</v-col>
+                <v-col cols="2">{{estado.created_at_GMT_3}}</v-col>
+                <v-col cols="2">{{estado.updated_at_GMT_3}}</v-col>
                 <v-col cols="3" class="text-end">
                     <v-btn icon @click="estado_popup_visible=true"><v-icon>mdi-circle-edit-outline</v-icon></v-btn>
                     <v-btn icon @click="destroy"><v-icon>mdi-delete</v-icon></v-btn>
