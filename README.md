@@ -40,10 +40,10 @@ docker run -d -p 27017-27019:27017-27019 --name mongodb mongo
 
 ```
 cd public/
-php -S localhost:8000
+php -S 0.0.0.0:8000
 ```
 
-4 - Abra seu browser (Chrome, Firefox, Opera ...) e acesse http://localhost:8000
+4 - Abra seu browser (Chrome, Firefox, Opera ...) e acesse http://<IP_DO_SERVIDOR>:8000
 
 
 ## Testes
