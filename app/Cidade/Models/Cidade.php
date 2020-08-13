@@ -8,7 +8,7 @@ Class Cidade extends Model {
     protected $connection = 'mongodb';
     protected $collection = 'cidades';
 
-    protected $fillable = ['name', 'code'];
+    protected $fillable = ['name', 'code', 'estado_id'];
     protected $appends = ['created_at_GMT_3', 'updated_at_GMT_3'];
 
     public function Estado()
