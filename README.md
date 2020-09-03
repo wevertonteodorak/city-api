@@ -1,6 +1,5 @@
-# Zoox-test
+# city-api
 
-Projeto criado como desafio da zoox smart data
 Lista de cidades e estados com uma API e um Frontend simples
 
 ## Introdução
